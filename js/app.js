@@ -50,6 +50,20 @@ console.log(shopArr);
 
 let parent = document.getElementById('parent');
 console.log(parent);
+
+let articleElement=document.createElement('article');
+parent.appendChild(articleElement);
+
+let h1Element=document.createElement('h1');
+articleElement.appendChild(h1Element);
+h1Element.textContent='Pat\'s Salmon cookies : sales data' ;
+
+let image = document.createElement('img');
+    articleElement.appendChild(image);
+
+    image.setAttribute('src', 'img/salmon.PNG',  this);
+
+
 let tableElement = document.createElement('table');
 parent.appendChild(tableElement);
 
