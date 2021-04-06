@@ -1,4 +1,4 @@
-# Lab: 07 - Add a constructor function to the cookie stand
+# Lab: 08b - Work on styling the cookie stand project
 ## cookie-stand
 
 ### Author: Amara Al Balkhi
@@ -17,4 +17,4 @@
 
 - *How long did it take you to complete this assignment? And, before you started, how long did you think it would take you to complete this assignment?*
 
-> *It took 6 hours from me. I think I will do that by 40 minutes.*
+> *It took 1 hours from me. I think I will do that by 10 minutes.*
