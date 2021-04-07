@@ -8,7 +8,41 @@
     <link  href="sales.html">
 </head>
 <body>
-    <div id="parent"></div>
+    <header>
+        <h1>Pat's Salmon cookies : sales data</h1>
+    </header>
+    <main>
+        <form action="" id="salesForm">
+            <fieldset>
+              <label for="nameField">Shop name :</label>
+              <input type="text" id="nameField" name="nameField" autocomplete="off" required>
+              <br>
+              <br>
+    
+              <label for="maxField">Max Customers :</label>
+              <input type="number" id="maxField" name="maxField" autocomplete="off" required>
+              <br>
+              <br>
+
+              <label for="minField">Min Customers :</label>
+              <input type="number" name="minField" id="minField" autocomplete="off" required>
+              <br>
+              <br>
+
+              <label for="avgField">Average Customers :</label>
+              <input type="number" id="avgField" name="avgField" autocomplete="off"  step="any" required>
+              <br>
+              <br>
+    
+    
+              <input type="Submit">
+    
+            </fieldset>
+          </form>
+    
+
+        <div id="parent"></div>
+    </main>
     <script src="js/app.js"></script>
 </body>
 </html>
