@@ -1,4 +1,4 @@
-# Lab: 08b - Work on styling the cookie stand project
+# Lab: 09 - Add a form to the cookie stand project
 ## cookie-stand
 
 ### Author: Amara Al Balkhi
@@ -17,4 +17,4 @@
 
 - *How long did it take you to complete this assignment? And, before you started, how long did you think it would take you to complete this assignment?*
 
-> *It took 1 hours from me. I think I will do that by 10 minutes.*
+> *It took 5 hours from me. I think I will do that by 30 minutes.*
