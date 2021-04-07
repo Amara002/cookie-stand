@@ -51,17 +51,17 @@ console.log(shopArr);
 let parent = document.getElementById('parent');
 console.log(parent);
 
-let articleElement=document.createElement('article');
+let articleElement = document.createElement('article');
 parent.appendChild(articleElement);
 
-let h1Element=document.createElement('h1');
+let h1Element = document.createElement('h1');
 articleElement.appendChild(h1Element);
-h1Element.textContent='Pat\'s Salmon cookies : sales data' ;
+h1Element.textContent = 'Pat\'s Salmon cookies : sales data';
 
 let image = document.createElement('img');
-    articleElement.appendChild(image);
+articleElement.appendChild(image);
 
-    image.setAttribute('src', 'img/salmon.PNG',  this);
+image.setAttribute('src', 'img/salmon.PNG', this);
 
 
 let tableElement = document.createElement('table');
@@ -70,76 +70,126 @@ parent.appendChild(tableElement);
 let theadElement = document.createElement('thead');
 tableElement.appendChild(theadElement)
 
-let headingRow = document.createElement('tr');
-theadElement.appendChild(headingRow);
+function makingHead() {
 
-let thElement1 = document.createElement('th');
-headingRow.appendChild(thElement1);
+    let headingRow = document.createElement('tr');
+    theadElement.appendChild(headingRow);
 
-for (let i = 0; i < hours.length; i++) {
-    let thElement = document.createElement('th');
-    headingRow.appendChild(thElement);
-    thElement.textContent = hours[i];
+    let thElement1 = document.createElement('th');
+    headingRow.appendChild(thElement1);
+
+    for (let i = 0; i < hours.length; i++) {
+        let thElement = document.createElement('th');
+        headingRow.appendChild(thElement);
+        thElement.textContent = hours[i];
+    }
+
+    let thElement4 = document.createElement('th');
+    headingRow.appendChild(thElement4);
+    thElement4.textContent = 'Daily location total';
 }
-
-let thElement4=document.createElement('th');
-headingRow.appendChild(thElement4);
-thElement4.textContent='Daily location total';
-
 let tbodyElement = document.createElement('tbody');
 tableElement.appendChild(tbodyElement);
 
-// let bodyRow=document.createElement('tr');
-// tbodyElement.appendChild(bodyRow);
-for (let i = 0; i < shopArr.length; i++) {
-    let bodyRow = document.createElement('tr');
-    tbodyElement.appendChild(bodyRow);
-    let thElement2 = document.createElement('th');
-    bodyRow.appendChild(thElement2);
-    thElement2.textContent = shopArr[i].shopsName;
-    for (let j = 0; j < hours.length; j++) {
-        let tdElement = document.createElement('td');
-        bodyRow.appendChild(tdElement);
-        tdElement.textContent = shopArr[i].cookieEachHour[j];
+// Shop.prototype.render =
+function makingBody() {
+
+    // let bodyRow=document.createElement('tr');
+    // tbodyElement.appendChild(bodyRow);
+    console.log("array ", shopArr);
+    for (let i = 0; i < shopArr.length; i++) {
+        let bodyRow = document.createElement('tr');
+        tbodyElement.appendChild(bodyRow);
+        let thElement2 = document.createElement('th');
+        bodyRow.appendChild(thElement2);
+        thElement2.textContent = shopArr[i].shopsName;
+        for (let j = 0; j < hours.length; j++) {
+            let tdElement = document.createElement('td');
+            bodyRow.appendChild(tdElement);
+            tdElement.textContent = shopArr[i].cookieEachHour[j];
+        }
+        let tdElement1 = document.createElement('td');
+        bodyRow.appendChild(tdElement1);
+        tdElement1.textContent = shopArr[i].dailyLocationTotal;
+
     }
-    let tdElement1 = document.createElement('td');
-    bodyRow.appendChild(tdElement1);
-     tdElement1.textContent=shopArr[i].dailyLocationTotal;
+
+}
+function makingFooter() {
+
+    let tfootElement = document.createElement('tfoot');
+    tableElement.appendChild(tfootElement);
+
+    let footRow = document.createElement('tr');
+    tfootElement.appendChild(footRow);
+
+    let thElement3 = document.createElement('th');
+    footRow.appendChild(thElement3);
+    thElement3.textContent = 'Total';
+
+    for (let i = 0; i < hours.length; i++) {
+        let total = 0;
+        let tdElement2 = document.createElement('td');
+        footRow.appendChild(tdElement2);
+        for (let j = 0; j < shopArr.length; j++) {
+            total += shopArr[j].cookieEachHour[i]
+        }
+        tdElement2.textContent = total;
+
+    }
+    let tdElement3 = document.createElement('td');
+    footRow.appendChild(tdElement3);
+    let finalColomn = 0;
+    for (let i = 0; i < shopArr.length; i++) {
+        finalColomn += shopArr[i].dailyLocationTotal;
+    }
+    tdElement3.textContent = finalColomn;
 
 }
 
-let tfootElement=document.createElement('tfoot');
-tableElement.appendChild(tfootElement);
+let salesForm = document.getElementById('salesForm');
+console.log(salesForm);
 
-let footRow=document.createElement('tr');
-tfootElement.appendChild(footRow);
+salesForm.addEventListener('submit', submitter);
+function submitter(event) {
+    event.preventDefault();
+    console.log(event);
 
-let thElement3=document.createElement('th');
-footRow.appendChild(thElement3);
-thElement3.textContent='Total';
+    let shopName = event.target.nameField.value;
+    console.log(shopName);
 
-for (let i=0; i<hours.length; i++){
-let total=0;
-let tdElement2=document.createElement('td');
-footRow.appendChild(tdElement2);
-for(let j=0; j<shopArr.length; j++){
-   total+=shopArr[j].cookieEachHour[i]
+    let minCustomer = parseInt(event.target.minField.value);
+    console.log(minCustomer);
+
+    let maxCustomer = parseInt(event.target.maxField.value);
+    console.log(maxCustomer);
+
+    let avgCustomer = parseFloat(event.target.avgField.value);
+    console.log(avgCustomer);
+
+    let addShop = new Shop(shopName, maxCustomer, minCustomer, avgCustomer);
+    addShop.calcCustEachHour();
+    addShop.calcCookieEachHour();
+
+    console.log(addShop);
+    console.log(shopArr);
+    makingHead();
+    makingBody();
+    makingFooter();
+    // for (let i = 0; i < shopArr.length; i++) {
+    //     shopArr[i].calcCookieEachHour();
+    //     shopArr[i].render();
+    // }
+
 }
- tdElement2.textContent=total;
 
-}
-let tdElement3=document.createElement('td');
-footRow.appendChild(tdElement3);
-let finalColomn=0;
-for (let i=0; i<shopArr.length; i++){
-finalColomn+=shopArr[i].dailyLocationTotal;
-}
-tdElement3.textContent=finalColomn;
-
-
-
-
-
+// makingHead();
+// makingBody();
+// makingFooter();
+    // for (let i = 0; i < shopArr.length; i++) {
+        //     shopArr[i].calcCookieEachHour();
+        //     shopArr[i].render();
+// }
 
 
 
